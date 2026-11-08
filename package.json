@@ -1,6 +1,6 @@
 {
   "name": "dsh-stream-index-guard",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Patches the LLM assistant-stream accumulator at runtime to clamp invalid chunk indices, downgrading hard stream failures to dropped or merged chunks; ships a stats tool.",
   "private": true,
   "type": "module",

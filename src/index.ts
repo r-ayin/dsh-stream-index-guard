@@ -24,9 +24,9 @@ export const name = 'dsh-stream-index-guard'
 export const inject = ['tools']
 
 /** 两份含 AssistantStreamAccumulator 的 dsh-llm 模块（host 经 package exports 解析到根 bundle；types 子路径另一份）。绝对 URL 保证与 host 同一实例。 */
+/** 补丁目标：env DSH_STREAM_GUARD_TARGETS（逗号分隔 file URL）优先；缺省从 host 入口脚本推导 dsh 安装根，仅保留存在的文件。 */
 const ENV_TARGETS = (process.env.DSH_STREAM_GUARD_TARGETS || '').split(',').map(s => s.trim()).filter(Boolean)
 
-/** Derive the dsh install root from the host entry script (process.argv[1]); env override wins. Only existing files are kept. */
 function discoverTargets(): string[] {
   if (ENV_TARGETS.length) return ENV_TARGETS
   const argv1 = String(process.argv[1] || '')
